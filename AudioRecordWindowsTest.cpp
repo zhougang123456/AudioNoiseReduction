@@ -39,7 +39,7 @@ int main()
 			sound_gbr.RegisterCallback(Callback);
 			sound_gbr.OpenAudioDevice();
 			//sound_gbr.SetPcmFileName("test.pcm");
-			sound_gbr.SetWavFileName("test.wav");
+			sound_gbr.SetWavFileName("test1.wav");
 			sound_gbr.StartRecord();
 			break;
 		case 'q':

@@ -8,7 +8,7 @@
 #define CHANNEL_NUM  1                                           // 声道数
 #define SAMPLE_RATE 48000                                      // 每秒采样率
 #define SAMPLE_BITS 16                                           // 采样位深
-#define AUDIO_DATA_BLOCK_SIZE (480*SAMPLE_BITS / 8 * 1)  // 缓存数据块大小 = 采样率*位深/2*秒（字节）                                
+#define AUDIO_DATA_BLOCK_SIZE (480 * SAMPLE_BITS / 8 * 1)  // 缓存数据块大小 = 采样率*位深/2*秒（字节）                                
 #define BUFFER_NUM 10         
 // 缓冲区层数
 //!
