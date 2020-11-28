@@ -1,30 +1,20 @@
 #include "AudioRecordWindows.h"
 #include "rnnoise.h"
-#define FRAME_SIZE 480
-#include "signal_processing_library.h"
-#include "noise_suppression_x.h"
-#include "noise_suppression.h"
-#include "gain_control.h"
 #include <string.h>
 #include <speex/speex_preprocess.h>
 namespace AudioRecordSpace
 {
 	// 静态变量初始化
 	int nRet = 0;
-	NsHandle *pNS_inst = NULL;
-
 	FILE *fpIn = NULL;
 	FILE *fpOut = NULL;
 
 	char *pInBuffer = NULL;
 	char *pOutBuffer = NULL;
+
+	
+	AudioDataDenoise m_audioDataDenoise;
 	//SpeexPreprocessState *state = speex_preprocess_state_init(480, SAMPLE_RATE);
-	DenoiseState* pRnnoise = rnnoise_create(NULL);
-	short data[320];
-	short shInL[160], shInH[160];
-	short shOutL[160] = { 0 }, shOutH[160] = { 0 };
-	int  filter_state1[6], filter_state12[6];
-	int  Synthesis_state1[6], Synthesis_state12[6];
 
 	std::array <char, AUDIO_DATA_BLOCK_SIZE> AudioRecordWindows::m_AudioDataBlock = {};
 	std::vector<std::array<char, AUDIO_DATA_BLOCK_SIZE>> AudioRecordWindows::m_AudioData = { {} };
@@ -66,13 +56,7 @@ namespace AudioRecordSpace
 
 		speex_preprocess_ctl(state, SPEEX_PREPROCESS_SET_DEREVERB_LEVEL, &f);
 */
-		WebRtcNs_Create(&pNS_inst);
-		WebRtcNs_Init(pNS_inst, 32000);
-		WebRtcNs_set_policy(pNS_inst, 1);
-		memset(filter_state1, 0, sizeof(filter_state1));
-		memset(filter_state12, 0, sizeof(filter_state12));
-		memset(Synthesis_state1, 0, sizeof(Synthesis_state1));
-		memset(Synthesis_state12, 0, sizeof(Synthesis_state12));
+		m_audioDataDenoise.Init();
 		m_WavFileOpen = NULL;
 		m_PcmFileOpen = NULL;
 		m_bSaveWavFile = false;
@@ -82,6 +66,7 @@ namespace AudioRecordSpace
 		m_WavHeader =
 		{
 		{ 'R', 'I', 'F', 'F' },
+
 		0,
 		{ 'W', 'A', 'V', 'E' },
 		{ 'f', 'm', 't', ' ' },
@@ -125,11 +110,6 @@ namespace AudioRecordSpace
 		}
 		WAVEFORMATEX waveFormate;
 		InitWaveFormat(&waveFormate, CHANNEL_NUM, SAMPLE_RATE, SAMPLE_BITS);
-		//#ifndef _WIN64
-		//  waveInOpen(&m_AudioDevice, WAVE_MAPPER, &waveFormate, (DWORD)WaveAPI_Callback, DWORD(this), CALLBACK_FUNCTION);
-		//#else
-		//  waveInOpen(&m_AudioDevice, WAVE_MAPPER, &waveFormate, (DWORD_PTR)WaveAPI_Callback, DWORD_PTR(this), CALLBACK_FUNCTION);
-		//#endif // !1
 		waveInOpen(&m_AudioDevice, WAVE_MAPPER, &waveFormate, (DWORD_PTR)WaveAPI_Callback, DWORD_PTR(this), CALLBACK_FUNCTION);
 		if (m_bCallback)
 		{
@@ -300,33 +280,13 @@ namespace AudioRecordSpace
 						m_AudioDataBlock.at(i) = 0;
 					}
 				}
-				//rnnoise
-				//float data[FRAME_SIZE];
-				//int a1 = 1;
-				//short * tmp = (short*)m_AudioDataBlock.data();
-				//for (int i = 0; i < CHANNEL_NUM; i++) {
-				//	for (int j = 0; j < FRAME_SIZE; j++) data[j] = tmp[j*CHANNEL_NUM + i];
-				//	rnnoise_process_frame(pRnnoise, data, data,a1);
-				//	for (int j = 0; j < FRAME_SIZE; j++)  tmp[j*CHANNEL_NUM + i] = (short)data[j];
-				//}
 
-				//webRtc
-				//short shBufferOut[320];
-				//short * tmp = (short*)m_AudioDataBlock.data();
-				//for (int j = 0; j < 320; j++) data[j] = tmp[j];
-				////首先需要使用滤波函数将音频数据分高低频，以高频和低频的方式传入降噪函数内部
-				//WebRtcSpl_AnalysisQMF(data, 320, shInL, shInH, filter_state1, filter_state12);
 
-				////将需要降噪的数据以高频和低频传入对应接口，同时需要注意返回数据也是分高频和低频
-				//if (0 == WebRtcNs_Process(pNS_inst, shInL, shInH, shOutL, shOutH))
-				//{
-				//	//如果降噪成功，则根据降噪后高频和低频数据传入滤波接口，然后用将返回的数据写入文件
-				//	WebRtcSpl_SynthesisQMF(shOutL, shOutH, 160, shBufferOut, Synthesis_state1, Synthesis_state12);
-				//}
-				//for (int j = 0; j < 320; j++)  tmp[j] = shBufferOut[j];
-
+				//m_audioDataDenoise.DealWithWebRtc((short*)m_AudioDataBlock.data());
+				m_audioDataDenoise.DealWithRnnoise((short*)m_AudioDataBlock.data());
 
 				//speex_preprocess_run(state, (spx_int16_t*)(m_AudioDataBlock.data()));
+
 
 				// 添加这一帧
 				m_AudioData.push_back(m_AudioDataBlock);

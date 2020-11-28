@@ -14,7 +14,7 @@ void Callback(std::array <char, AUDIO_DATA_BLOCK_SIZE> audioDataBlock, RecordSta
 	}
 	else if (recordStatus == RecordStatus::RecordWriteData)
 	{
-	//	cout << "回调 正在写入数据" << endl;
+		cout << "回调 正在写入数据" << endl;
 	}
 	else if (recordStatus == RecordStatus::RecordStop)
 	{
@@ -29,6 +29,7 @@ int main()
 {
 	char ch = 0;
 	AudioRecordWindows sound_gbr;
+	cout << "输入's'开始录音，输入'q'结束录音" << endl;
 	while (ch != 'q')
 	{
 		ch = _getch();
@@ -38,7 +39,6 @@ int main()
 			cout << "开始录音" << endl;
 			sound_gbr.RegisterCallback(Callback);
 			sound_gbr.OpenAudioDevice();
-			//sound_gbr.SetPcmFileName("test.pcm");
 			sound_gbr.SetWavFileName("test1.wav");
 			sound_gbr.StartRecord();
 			break;

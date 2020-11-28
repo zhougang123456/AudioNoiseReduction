@@ -4,6 +4,7 @@
 #include <iostream>
 #include <array>
 #include <vector>
+#include "AudioDataDenoise.h"
 #pragma comment(lib,"winmm.lib")
 #define CHANNEL_NUM  1                                           // 声道数
 #define SAMPLE_RATE 48000                                      // 每秒采样率
@@ -111,7 +112,7 @@ namespace AudioRecordSpace
 	private:
 		HWAVEIN m_AudioDevice;                                                   // 音频输入设备
 		WAVEHDR m_WaveHdrBuffer[BUFFER_NUM];                                     // 声明缓冲区
-		static std::array<char, AUDIO_DATA_BLOCK_SIZE> m_AudioDataBlock;       // 当前录制一帧音频数据
+		static std::array<char, AUDIO_DATA_BLOCK_SIZE> m_AudioDataBlock;         // 当前录制一帧音频数据
 		static std::vector<std::array<char, AUDIO_DATA_BLOCK_SIZE>> m_AudioData; // 存储所有录制的音频数据
 		static bool m_bStopRecord;                                               // 是否停止录音
 		static bool m_bPushData;                                                 // 是否向m_AudioDataBlock中push数据

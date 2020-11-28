@@ -9,7 +9,8 @@
 #define RNN_INLINE inline
 #define OPUS_INLINE inline
 
-
+#define FRAME_SIZE 320
+#define CHANNEL_NUM 1
 /** RNNoise wrapper for malloc(). To do your own dynamic allocation, all you need t
 o do is replace this function and rnnoise_free */
 #ifndef OVERRIDE_RNNOISE_ALLOC

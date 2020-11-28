@@ -156,6 +156,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AudioDataDenoise.h" />
     <ClInclude Include="rnnoise\arch.h" />
     <ClInclude Include="rnnoise\celt_lpc.h" />
     <ClInclude Include="rnnoise\common.h" />
@@ -188,6 +189,7 @@
     <ClInclude Include="WebRtcMoudle\windows_private.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AudioDataDenoise.cpp" />
     <ClCompile Include="AudioRecordWindows.cpp" />
     <ClCompile Include="AudioRecordWindowsTest.cpp" />
     <ClCompile Include="rnnoise\celt_lpc.c" />

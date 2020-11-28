@@ -105,6 +105,9 @@
     <ClInclude Include="rnnoise\tansig_table.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="AudioDataDenoise.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AudioRecordWindows.cpp">
@@ -225,6 +228,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="rnnoise\rnn_reader.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioDataDenoise.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
