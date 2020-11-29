@@ -9,8 +9,12 @@
 #define RNN_INLINE inline
 #define OPUS_INLINE inline
 
-#define FRAME_SIZE 320
-#define CHANNEL_NUM 1
+#define CHANNEL_NUM  1                                           // 声道数
+#define SAMPLE_RATE 8000                                      // 每秒采样率
+#define FRAME_SIZE  (SAMPLE_RATE/100)
+#define SAMPLE_BITS 16                                           // 采样位深
+#define AUDIO_DATA_BLOCK_SIZE (FRAME_SIZE * SAMPLE_BITS / 8 * 1)  // 缓存数据块大小 = 采样率*位深/2*秒（字节）                                
+#define BUFFER_NUM 10    
 /** RNNoise wrapper for malloc(). To do your own dynamic allocation, all you need t
 o do is replace this function and rnnoise_free */
 #ifndef OVERRIDE_RNNOISE_ALLOC
@@ -43,7 +47,4 @@ static RNN_INLINE void rnnoise_free (void *ptr)
 #ifndef OVERRIDE_RNN_CLEAR
 #define RNN_CLEAR(dst, n) (memset((dst), 0, (n)*sizeof(*(dst))))
 #endif
-
-
-
 #endif

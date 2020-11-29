@@ -7,6 +7,8 @@
 //rnnoise需要的头文件
 #include "rnnoise.h"
 #include "common.h"
+//speex需要的头文件
+#include <speex/speex_preprocess.h>
 class AudioDataDenoise
 {
 public:
@@ -22,5 +24,6 @@ public:
 private:
 	DenoiseState* m_pRnnoise;
 	NsHandle * m_pNS_inst;
+	SpeexPreprocessState *st;
 };
 

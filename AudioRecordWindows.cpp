@@ -1,7 +1,6 @@
 #include "AudioRecordWindows.h"
 #include "rnnoise.h"
 #include <string.h>
-#include <speex/speex_preprocess.h>
 namespace AudioRecordSpace
 {
 	// 静态变量初始化
@@ -14,7 +13,6 @@ namespace AudioRecordSpace
 
 	
 	AudioDataDenoise m_audioDataDenoise;
-	//SpeexPreprocessState *state = speex_preprocess_state_init(480, SAMPLE_RATE);
 
 	std::array <char, AUDIO_DATA_BLOCK_SIZE> AudioRecordWindows::m_AudioDataBlock = {};
 	std::vector<std::array<char, AUDIO_DATA_BLOCK_SIZE>> AudioRecordWindows::m_AudioData = { {} };
@@ -24,38 +22,6 @@ namespace AudioRecordSpace
 	AudioRecordCallback AudioRecordWindows::m_Callback = NULL;
 	AudioRecordWindows::AudioRecordWindows()
 	{
-		/*int denoise = 1;
-
-		int noiseSuppress = -25;
-
-		speex_preprocess_ctl(state, SPEEX_PREPROCESS_SET_DENOISE, &denoise);
-
-		speex_preprocess_ctl(state, SPEEX_PREPROCESS_SET_NOISE_SUPPRESS, &noiseSuppress);
-
-
-
-		int i;
-
-		i = 0;
-
-		speex_preprocess_ctl(state, SPEEX_PREPROCESS_SET_AGC, &i);
-
-		i = 80000;
-
-		speex_preprocess_ctl(state, SPEEX_PREPROCESS_SET_AGC_LEVEL, &i);
-
-		i = 0;
-
-		speex_preprocess_ctl(state, SPEEX_PREPROCESS_SET_DEREVERB, &i);
-
-		float f = 0;
-
-		speex_preprocess_ctl(state, SPEEX_PREPROCESS_SET_DEREVERB_DECAY, &f);
-
-		f = 0;
-
-		speex_preprocess_ctl(state, SPEEX_PREPROCESS_SET_DEREVERB_LEVEL, &f);
-*/
 		m_audioDataDenoise.Init();
 		m_WavFileOpen = NULL;
 		m_PcmFileOpen = NULL;
@@ -280,12 +246,13 @@ namespace AudioRecordSpace
 						m_AudioDataBlock.at(i) = 0;
 					}
 				}
-
-
+				//调用WebRtc 降噪
 				//m_audioDataDenoise.DealWithWebRtc((short*)m_AudioDataBlock.data());
-				m_audioDataDenoise.DealWithRnnoise((short*)m_AudioDataBlock.data());
+				//调用rnnoise降噪
 
-				//speex_preprocess_run(state, (spx_int16_t*)(m_AudioDataBlock.data()));
+				//m_audioDataDenoise.DealWithRnnoise((short*)m_AudioDataBlock.data());
+
+				m_audioDataDenoise.DealWithSpeex((short*)m_AudioDataBlock.data());
 
 
 				// 添加这一帧

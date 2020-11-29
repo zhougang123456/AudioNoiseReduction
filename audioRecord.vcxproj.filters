@@ -15,97 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="WebRtcMoudle\analog_agc.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="WebRtcMoudle\complex_fft_tables.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="WebRtcMoudle\cpu_features_wrapper.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="WebRtcMoudle\defines.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="WebRtcMoudle\digital_agc.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="WebRtcMoudle\fft4g.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="WebRtcMoudle\gain_control.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="WebRtcMoudle\noise_suppression.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="WebRtcMoudle\noise_suppression_x.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="WebRtcMoudle\ns_core.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="WebRtcMoudle\nsx_core.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="WebRtcMoudle\nsx_defines.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="WebRtcMoudle\real_fft.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="WebRtcMoudle\resample_by_2_internal.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="WebRtcMoudle\ring_buffer.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="WebRtcMoudle\signal_processing_library.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="WebRtcMoudle\spl_inl.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="WebRtcMoudle\typedefs.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="WebRtcMoudle\windows_private.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="rnnoise\_kiss_fft_guts.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="rnnoise\arch.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="rnnoise\celt_lpc.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="rnnoise\common.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="rnnoise\kiss_fft.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="rnnoise\opus_types.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="rnnoise\pitch.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="rnnoise\rnn.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="rnnoise\rnn_data.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="rnnoise\rnnoise.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="rnnoise\tansig_table.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="AudioDataDenoise.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioRecordWindows.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

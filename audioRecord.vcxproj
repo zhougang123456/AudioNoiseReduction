@@ -97,8 +97,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Users\cuixf\Desktop\audioRecord\include;C:\Users\cuixf\Desktop\audioRecord\src;C:\Users\cuixf\Desktop\audioRecord\speexdsp-1.2rc3\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libspeexdsp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>.\speexdsp-1.2rc3\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -157,36 +157,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AudioDataDenoise.h" />
-    <ClInclude Include="rnnoise\arch.h" />
-    <ClInclude Include="rnnoise\celt_lpc.h" />
-    <ClInclude Include="rnnoise\common.h" />
-    <ClInclude Include="rnnoise\kiss_fft.h" />
-    <ClInclude Include="rnnoise\opus_types.h" />
-    <ClInclude Include="rnnoise\pitch.h" />
-    <ClInclude Include="rnnoise\rnn.h" />
-    <ClInclude Include="rnnoise\rnnoise.h" />
-    <ClInclude Include="rnnoise\rnn_data.h" />
-    <ClInclude Include="rnnoise\tansig_table.h" />
-    <ClInclude Include="rnnoise\_kiss_fft_guts.h" />
-    <ClInclude Include="WebRtcMoudle\analog_agc.h" />
-    <ClInclude Include="WebRtcMoudle\complex_fft_tables.h" />
-    <ClInclude Include="WebRtcMoudle\cpu_features_wrapper.h" />
-    <ClInclude Include="WebRtcMoudle\defines.h" />
-    <ClInclude Include="WebRtcMoudle\digital_agc.h" />
-    <ClInclude Include="WebRtcMoudle\fft4g.h" />
-    <ClInclude Include="WebRtcMoudle\gain_control.h" />
-    <ClInclude Include="WebRtcMoudle\noise_suppression.h" />
-    <ClInclude Include="WebRtcMoudle\noise_suppression_x.h" />
-    <ClInclude Include="WebRtcMoudle\nsx_core.h" />
-    <ClInclude Include="WebRtcMoudle\nsx_defines.h" />
-    <ClInclude Include="WebRtcMoudle\ns_core.h" />
-    <ClInclude Include="WebRtcMoudle\real_fft.h" />
-    <ClInclude Include="WebRtcMoudle\resample_by_2_internal.h" />
-    <ClInclude Include="WebRtcMoudle\ring_buffer.h" />
-    <ClInclude Include="WebRtcMoudle\signal_processing_library.h" />
-    <ClInclude Include="WebRtcMoudle\spl_inl.h" />
-    <ClInclude Include="WebRtcMoudle\typedefs.h" />
-    <ClInclude Include="WebRtcMoudle\windows_private.h" />
+    <ClInclude Include="AudioRecordWindows.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AudioDataDenoise.cpp" />
